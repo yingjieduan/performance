@@ -9,13 +9,13 @@ class Performance(object):
         :param dfCF: must have 2 columns [Value, CFDirection(1:inCF, -1:outCF, rest direction will be ignored)]
         :param convention: 0:inCF is BOD and outCF is EOD, 1:BeginOfDay, 2:EndOfDay
         """
+        if dfCF is None:
+            return floatStartPosition, floatEndPosition
+        
         totalInCF = dfCF.loc[dfCF['Direction'] == 1, 'Value'].sum()
         totalOutCF = dfCF.loc[dfCF['Direction'] == -1, 'Value'].sum()
         start = 0
         end = 0
-
-        if dfCF is None:
-            return floatStartPosition, floatEndPosition
 
         if convention == 0: #inCF is BOD and outCF is EOD
             start = floatStartPosition + totalInCF
