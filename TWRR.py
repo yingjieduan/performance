@@ -69,17 +69,3 @@ class Performance(object):
         ret = dfComponentReturn.apply(lambda row: row['Weight'] * row['Return'], axis=1).sum()
         return ret
 
-if __name__ == "__main__":
-    dfCF = FileLoader.csvLoader(r'\test\dfCF.csv')
-    print(Performance.calcPeriodReturn(500,100,dfCF))
-    print(Performance.calcPeriodReturn(500, 100, dfCF, 1))
-    print(Performance.calcPeriodReturn(500, 100, dfCF, 2))
-
-    print(Performance.calcPeriodReturn(0, 0, dfCF))
-    print(Performance.calcPeriodReturn(0, 0, dfCF, 1))
-    print(Performance.calcPeriodReturn(0, 0, dfCF, 2))
-
-    consolidatedReturn = FileLoader.csvLoader(r'\test\consolidatedReturn.csv')
-    print(Performance.consolidatedReturn(consolidatedReturn))
-
-
